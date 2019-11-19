@@ -6,6 +6,7 @@
 
 #scene4html #section1in4{
 	background-color: black;
+	background-image: url("https://farm6.static.flickr.com/5580/14194185064_549896148e_b.jpg");
 }
 
 #scene4html #section1in4--content{
@@ -14,13 +15,15 @@
 
 #scene4-interact{
 	position: absolute;
-	top: 80%;
+	top: 75%;
 	left: 50%;
-	vertical-align: middle;
+	background-color:yellow;
+	transform: translate(-50%, -50%); /* up and left? yes: this is the content! */
+
 }
 
 .custom-btn { /* an anchor */
-	display: inline-block;
+	display: inline-block; /* or block */
 	margin-left: 5px;
 	margin-bottom: 15px;
 	box-sizing: border-box;
@@ -29,7 +32,8 @@
 	text-decoration: none;
 	font-weight: bold;
 	color: #5ea97d;
-	transform: translate(-50%, -50%); /* up and left? yes: this is the content! */
+	text-align: center;
+	/*transform: translate(-50%, -50%);*/ /* up and left? yes: this is the content! */
 	text-shadow: 0 -2px 0 #4a8a65, 0 1px 1px #c2dece;
 	cursor: pointer;
 	line-height: 65px;
@@ -76,6 +80,67 @@
 	 top: .5rem;
 	 box-shadow: 0 3px 3px rgba(0, 0, 0, .7), 0 3px 9px rgba(0, 0, 0, .2);
 }
+
+.custom-btn1 { /* an anchor */
+	position: relative;
+	display: block;
+	z-index: 3;
+	top:0rem;
+	right: 0rem;
+	background-color: olive;
+	height: 7rem;
+	width: 9.5rem;
+	border-radius:15% 15% 50% 50%;
+	border: 2px solid peru;
+	border-top: 4px;
+	transform: rotateX(35deg);
+}
+
+.custom-btn1::before { /* an anchor */
+	display: block; /* or block */
+	position: absolute;
+	content:"PUSH";
+	z-index: 4;
+	/*margin-left: .5rem;
+	margin-bottom: 1.5rem;*/
+	box-sizing: border-box;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 1.3em;
+	line-height: 4.5em;
+	text-decoration: none;
+	color:black;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+	padding: 0 0.25rem;
+	/*height: 6.5rem;
+	width: auto;
+	border-radius: .5rem;
+	*/
+	height: 10rem;
+	width: 10rem;
+	border-radius: 50%;
+	border: solid lightgreen;
+	transform: translate(-11%, -70%) rotateX(40deg);
+	background-color:chartreuse;
+	/*position: relative;*/
+	transition: all 0.1s ease-out;	
+}
+
+.custom-btn1:visited {
+	 /*color: blue;*/
+}
+
+.custom-btn1:hover:before{
+	background-color:olivedrab;
+	color:lightgray;
+}
+
+.custom-btn1:active:before{
+	background-color:olivedrab;
+	transform: translate(-11%,-65%) rotateX(40deg);
+}
+
 
 /*https://codepen.io/w3core/pen/ZbJeXm*/
 @keyframes jump {
