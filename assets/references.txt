@@ -1,0 +1,9 @@
+SOURCES:
+---query: 'butterfly smog' images
+death butterflies: https://pullupachair.org/2007/09/11/butterfly-burial-ground-3/
+smog: https://hiveminer.com/Tags/smog%2Cteesside/Timeline
+
+TRICKS:
+https://css-tricks.com/apply-a-filter-to-a-background-image/
+https://www.jqueryscript.net/blog/Top-50-Best-Parallax-Scroll-Effect-jQuery-Plugins.html
+https://www.w3schools.com/howto/howto_css_smooth_scroll.asp

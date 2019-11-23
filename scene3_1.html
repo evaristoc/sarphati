@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Sarphati - story in AR.JS</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<link rel="stylesheet" type="text/css" href="assets/style/main.css">
+	<link rel="stylesheet" type="text/css" href="assets/style/scene3.css">
+</head>
+<body>
+	<section id="scene3html" class="scenehtml">
+		  <!--<a href="javascript:void(0)" class="closebtn">&times;</a>-->
+		 <section id="section1in3" class="parallax" tabindex="0">
+			<div id="section1in3--content" class="section--content">
+				<p class="section--content__paragraph">The air we flew in became darker and sad.</p>
+			</div>
+		</section>
+		<section id="section2in3" class="parallax" tabindex="1">
+			<div id="section2in3--content" class="section--content">
+				<p class="section--content__paragraph">We were <strong>disappearing!</strong></p>
+				<!--<div class="container first-inner-div">
+				  <h3>Scroll down</h3>
+					<a href="#anchor">
+					  <span class="glyphicon glyphicon-circle-arrow-down down-arrow"></span>
+					</a>
+				</div>-->
+			</div>
+		</section>
+		<section id="section3in3" class="parallax" tabindex="2">
+			<div id="section3in3--content" class="section--content">
+				<p class="section--content__paragraph">Help us to find the source of this darkness and change it. It is about following marks along the path.</p>
+				<!--<div class="container first-inner-div">
+				  <h3>Scroll down</h3>
+					<a href="#anchor">
+					  <span class="glyphicon glyphicon-circle-arrow-down down-arrow"></span>
+					</a>
+				</div>-->
+			</div>
+		</section>
+		<div id="scene3--scroll">
+			<h3>Scroll down</h3>
+			<a href="#dummy">
+				<i id="scene3--scroll__icon" class="material-icons">arrow_drop_down_circle</i>
+			 </a>
+		</div>
+	</section>
+	<script>
+		
+		/*
+		//https://jsfiddle.net/vvup5ob5/3/
+		//https://www.codementor.io/lautiamkok/js-tips-creating-a-simple-parallax-scrolling-with-css3-and-jquery-efp9b2spn
+		function isInViewport(node) {
+			var rect = node.getBoundingClientRect(); //https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+			return (
+			  (rect.height > 0 || rect.width > 0) &&
+			  rect.bottom >= 0 &&
+			  rect.right >= 0 &&
+			  rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+			  rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+			)
+		}
+		
+		$(window).scroll(function() {
+			var scrolled = $(window).scrollTop()
+			$('.parallax').each(function(index, element) {
+			  var initY = $(this).offset().top
+			  var height = $(this).height()
+			  var endY  = initY + $(this).height()
+		  
+			  // Check if the element is in the viewport.
+			  var visible = isInViewport(this)
+			  if(visible) {
+				var diff = scrolled - initY
+				var ratio = Math.round((diff / height) * 100)
+				$(this).css('background-position','center ' + parseInt(-(ratio * 1.5)) + 'px')
+			  }
+			})
+		  })
+		*/
+		
+		/*
+		jQuery codes for smooth scrolling. The following code is from
+		https://css-tricks.com/snippets/jquery/smooth-scrolling/
+	  */
+	console.log($(window).scrollTop())
+	$(window).scroll(function (event) {
+    var scroll = $(window).scrollTop();
+    // Do something
+	console.log(scroll)
+	});
+	
+	  $(document).ready(function() { //<<====== wont work without this
+      $(document).scroll(function() {
+          console.log('logging');
+      });
+	})
+	  
+	  document.addEventListener('scroll', function (event) {
+  
+        //console.log('scrolling');
+		//console.log(document.documentElement.scrollHeight, window.innerHeight, $('#section1in3').offset().top, $('#section2in3').offset().top, $('#section3in3').offset().top)
+}, true /*Capture event*/);
+	//.on('scroll',
+	//	function(event){console.log(event, document.documentElement.scrollHeight, window.innerHeight)}
+	//);
+	  var sectionids = ['#section1in3', '#section2in3', '#section3in3'];	
+	  $(function() {
+	
+		$('a[href*=#]:not([href=#])') //E: select all #-ed href ONLY if they have something else than a simple hash (no directional)
+			.click(function(event) {
+				var scrolldistances = []
+				//1. get all current offsettops of your sections
+				for (var i = 0; i < sectionids.length; i++) {
+					scrolldistances.push($(sectionids[i]).offset().top);
+				};
+				//console.log(document.documentElement.scrollHeight);
+				
+				//2. find the index of the value that is between -scrollHeight / +scrollHeight
+				var myindex = scrolldistances.findIndex(function(element){return element < document.documentElement.scrollHeight && element > -document.documentElement.scrollHeight})
+				
+				//console.log(myindex, sectionids[myindex+1], $(sectionids[myindex+1]).offset().top*(myindex+1));
+				
+				//3. that is my target section
+				var target = $(sectionids[myindex+1]);
+				event.preventDefault();
+				
+				//4. animate by scrolling what I have done of offset from my current position + absolute value of what is covered for the very first section
+				//--- always scroll down.
+				$('#scene3html')
+					.animate(
+						{
+						   //opacity: "toggle"
+						   scrollTop: target.offset().top - $(sectionids[0]).offset().top
+						},
+						1000
+		   
+					);				
+				
+				
+				
+				////E: if you are in the correct location looking at the correct host...
+				//if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+				//	location.hostname == this.hostname) {
+				//	
+				//	//E: ... reveal the hashed target...
+				//	var target = $(this.hash);
+				//	
+				//	//E: If you get the hashed target, then use it - it might be an id attribute -, otherwise generate it using a name attribute instead of id attribute
+				//	target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+				//	
+				//	//E: we got a target...
+				//	if (target.length) {
+				//		
+				//		event.preventDefault();
+				//		
+				//		//E: USE ANIMATE..
+				//		//--- the selection of the context is RELEVANT - jQuery will check the IMMEDIATE PARENT node!
+				//		$('#scene3html')
+				//			.animate(
+				//					 {
+				//						//opacity: "toggle"
+				//						scrollTop: target.offset().top
+				//					 },
+				//					 1000,
+				//					 function() {
+				//						// Callback after animation
+				//						// Must change focus!
+				//						// E: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+				//						var $target = $(target);
+				//						console.log($target, $target.is(":focus"))
+				//						//E: following code seems to create a queue of events
+				//						$target.focus();
+				//						if ($target.is(":focus")) { // Checking if the target was focused
+				//							return false;
+				//						} else {
+				//							//$target.attr('tabindex','-1'); // Adding tabindex for elements not focusable (E: no back to this one!)
+				//							//$target.focus(); // Set focus again
+				//							console.log($target.focus());
+				//						};
+				//					 }
+				//		
+				//		);
+				//		
+				//		//E: stop
+				//		return false;
+				//	}
+				//}
+		});
+	  });
+				
+	</script>
+</body>
+</html>
